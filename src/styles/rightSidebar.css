@@ -1,0 +1,14 @@
+.rightSidebar {
+    flex: .3 !important;
+    height: 100vh;
+    border-left: 1px solid lightgray;
+    padding: 3% 30px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.rightSidebar::-webkit-scrollbar {
+    display: none;
+}

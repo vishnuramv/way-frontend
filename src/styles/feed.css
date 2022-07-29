@@ -1,0 +1,23 @@
+.feed {
+    height: 100vh;
+    max-height: 100vh !important;
+    overflow: hidden !important;
+    display: flex;
+    flex-direction: row;
+    width: 100vw !important;
+}
+
+.feed__container {
+    max-width: 70% !important;
+    flex: .7 !important;
+    margin: 0 !important;
+    padding: 5% 12% !important;
+    height: 100vh;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.feed__container::-webkit-scrollbar {
+    display: none;
+}

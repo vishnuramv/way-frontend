@@ -1,0 +1,29 @@
+.write {
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+    max-height: 100vh;
+    max-width: 100vw;
+    overflow: hidden;
+}
+
+.wrapper-class {
+    padding: 1rem;
+    /* border: 1px solid #ccc; */
+}
+
+.editor-class {
+    /* background-color: lightgray; */
+    padding: 0px 1rem;
+    border: 1px solid #F1F1F1;
+    height: 90vh;
+    overflow-x: hidden;
+}
+
+.toolbar-class {
+    /* border-bottom: 1px solid lightgray; */
+    border-bottom: none;
+    outline: none;
+    box-shadow: none;
+    margin-bottom: 0;
+}

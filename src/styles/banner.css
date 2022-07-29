@@ -1,0 +1,40 @@
+.banner {
+    display: flex;
+    align-items: center;
+    padding-right: 0px !important;
+    padding-left: 10% !important;
+    background-color: #f6f7fb;
+    border-bottom: 1px solid lightgray;
+    height: 60vh;
+}
+
+.banner__left {
+    flex: .5;
+}
+
+
+.banner__right {
+    flex: .5;
+    height: 100%;
+    background-image: url('../assets/img/bannerimg4.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+
+@media (max-width: 460px) {
+    .banner {
+        height: 75vh;
+    }
+
+    .banner__left {
+        flex: 1;
+    }
+
+    .banner__right {
+        display: none;
+    }
+}
