@@ -1,16 +1,34 @@
-import { Avatar, Divider, Icon, Text, Tooltip } from '@chakra-ui/react'
+import {
+    Avatar, Divider, Icon, Text, Tooltip, Menu,
+    MenuButton,
+    MenuList,
+    MenuItem, Button, Box
+} from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/img/logonew.png";
 import { IoHomeOutline, IoHome, IoBookmarks, IoBookmarksOutline, IoPencil, IoPencilOutline, IoBook, IoBookOutline } from 'react-icons/io5'
 import { RiQuillPenFill, RiQuillPenLine } from 'react-icons/ri'
-// import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux'
 import "../styles/sidebar.css"
+import { logout } from '../apiclient/userapi';
+import { setUser } from '../context/reducers/userReducer';
 
 const Sidebar = ({ user }) => {
     const location = useLocation();
     const { pathname } = location;
     const splitLocation = pathname.split("/");
+    const dispatch = useDispatch();
+
+    const handleLogout = async () => {
+        console.log("first")
+        logout(dispatch, setUser).then(() => {
+            console.log("Logged out")
+            window.location.reload("/")
+        }).catch(err => {
+            console.log(err);
+        })
+    }
 
 
     return (
@@ -99,7 +117,18 @@ const Sidebar = ({ user }) => {
                     )
                 }
             </div>
-            <Avatar name={user?.username} src={user?.dpUrl} size="sm" />
+            <Menu>
+                <MenuButton as={Box}>
+                    <Avatar name={user?.username} src={user?.dpUrl} size="sm" />
+                </MenuButton>
+                <MenuList>
+                    <MenuItem onClick={handleLogout}>
+                        <Text fontSize="sm" color="blackAlpha.700">
+                            Logout
+                        </Text>
+                    </MenuItem>
+                </MenuList>
+            </Menu>
         </div >
     )
 }

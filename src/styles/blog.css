@@ -1,0 +1,18 @@
+.blog__Container {
+    position: relative;
+}
+
+.blog__footer {
+    position: fixed;
+    bottom: 20px;
+    width: 120px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 2px 10px 0px;
+    background-color: #ffffff;
+}
+
+
+.blog__divider {
+    height: 15px;
+    width: 1px;
+    background-color: #e5e5e5;
+}

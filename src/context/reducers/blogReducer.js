@@ -5,6 +5,7 @@ export const blogSlice = createSlice({
     initialState: {
         blogFeed: [],
         savedBlogs: [],
+        myBlogs: [],
     },
     reducers: {
         setBlogFeed: (state, action) => {
@@ -12,11 +13,14 @@ export const blogSlice = createSlice({
         },
         setSavedBlogs: (state, action) => {
             state.savedBlogs = action.payload
+        },
+        setMyBlogs: (state, action) => {
+            state.myBlogs = action.payload
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { setBlogFeed, setSavedBlogs } = blogSlice.actions
+export const { setBlogFeed, setSavedBlogs, setMyBlogs } = blogSlice.actions
 
 export default blogSlice.reducer

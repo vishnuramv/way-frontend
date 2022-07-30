@@ -8,6 +8,7 @@
 }
 
 .feed__container {
+    position: relative;
     max-width: 70% !important;
     flex: .7 !important;
     margin: 0 !important;

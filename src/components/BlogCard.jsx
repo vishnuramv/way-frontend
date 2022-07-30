@@ -1,4 +1,4 @@
-import { Avatar, Badge, Box, IconButton, Image, Text, Tooltip } from '@chakra-ui/react';
+import { Avatar, Badge, Box, Flex, IconButton, Image, Text, Tooltip } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 import "../styles/blogCard.css";
 import blogImg from "../assets/img/bannerimg1.jpg"
@@ -9,7 +9,7 @@ const BlogCard = ({ blog }) => {
     const user = useSelector((state) => state.user)
     const [blogData, setBlogData] = useState(false)
     useEffect(() => {
-        console.log(blog)
+        // console.log(blog)
         let temp = { ...blog }
         temp.content = blog?.content.replace(/<[^>]+>/g, '').replace(/(^[ \t]*\n)/gm, "").split(/\r?\n/).join(" ");
         setBlogData(temp)
@@ -18,7 +18,10 @@ const BlogCard = ({ blog }) => {
     return (
         <Box className='blogCard'>
             <Box className={`blogCard__left ${!blogData?.primaryImgUrl && "blogCard__noImg"}`}>
-                <Text fontSize="md"><Avatar name='vishnu' src={blogData?.user?.dpUrl} size="xs" />&nbsp;&nbsp; {blogData?.user?.username}</Text>
+                <Flex alignItems="center">
+                    <Avatar name='vishnu' src={blogData?.user?.dpUrl} size="xs" />
+                    <Text fontSize="md"> &nbsp;&nbsp; {blogData?.user?.username}</Text>
+                </Flex>
                 <Link to={`/blog/${blogData?.postId}`} state={blog} >
                     <Text fontSize="3xl" fontWeight="800" className='blogCard__heading'>{blogData?.title}</Text>
                 </Link>

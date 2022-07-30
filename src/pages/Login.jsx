@@ -39,10 +39,10 @@ const Login = () => {
                 <form>
                     <Input variant='flushed' placeholder='Email' type="email" value={userData.email} onChange={(event) => handleInput(event.target.value, "email")} required />
                     <Input variant='flushed' placeholder='Password' type="password" value={userData.password} onChange={(event) => handleInput(event.target.value, "password")} required my="5" />
-                    <Text fontSize="sm" fontWeight="light" align="center">Click “Sign In” to agree to Way’s <Link to="/"><Text as='u'>Terms of Service</Text></Link> and acknowledge that Way’s <Link to="/"><Text as='u'>Privacy Policy</Text></Link> applies to you.</Text>
+                    <Text fontSize="sm" fontWeight="light" align="center">Click “Sign In” to agree to Way’s <Link to="/"><u>Terms of Service</u></Link> and acknowledge that Way’s <Link to="/"><u>Privacy Policy</u></Link> applies to you.</Text>
                     <Button variant='outline' type="submit" onClick={handleSubmit} color='black' mt="5">Sign In</Button>
                 </form>
-                <Text display="flex">No account? <Link to="/signup"> <Text color="green">&nbsp; Create one</Text></Link></Text>
+                <Text display="flex">No account? <Link to="/signup"> <Text as="span" color="green">&nbsp; Create one</Text></Link></Text>
             </Box>
         </div>
     )

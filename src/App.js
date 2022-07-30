@@ -11,6 +11,8 @@ import { getUser } from './apiclient/userapi';
 import { setUser } from './context/reducers/userReducer';
 import Write from './pages/Write';
 import Blog from './pages/Blog';
+import Bookmarks from './pages/Bookmarks';
+import UserBlog from './pages/UserBlog';
 
 
 function App() {
@@ -21,7 +23,7 @@ function App() {
     const token = localStorage.getItem('token')
     if (!!token) {
       setIsLoggedin(true)
-      if (!user.token) {
+      if (!!user.name) {
         getUser(localStorage.getItem('username'), dispatch, setUser)
       }
     }
@@ -45,7 +47,9 @@ function App() {
           ) : (
             <>
               <Route path="/write" element={<Write />} />
+              <Route path="my-blog" element={<UserBlog />} />
               <Route path="/blog/:id" element={<Blog />} />
+              <Route path="saved-posts" element={<Bookmarks />} />
               <Route exact path="/" element={<Feed />} />
             </>
           )

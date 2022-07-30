@@ -24,7 +24,7 @@ const UserCard = ({ user, topic, createdDate }) => {
                         </Box>
                     </Flex>
                 </Box>
-                <Button variant="solid">Follow</Button>
+                {/* <Button variant="solid">Follow</Button> */}
             </Flex>
         </div>
     )

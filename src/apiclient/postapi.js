@@ -10,14 +10,16 @@ export const getPosts = async (dispatch, setBlogFeed) => {
     })
 }
 
-export const getSavedPosts = async (dispatch, setSavedBlogs) => {
-    const url = BASE_URL + "save-post/get-posts"
-    await axios.get(url, axiosConfig).then(res => {
-        dispatch(setSavedBlogs(res.data))
+export const getPost = async (setBlogData, id) => {
+    const url = BASE_URL + "post/get-post/" + id
+    await axios.get(url).then(res => {
+        setBlogData(res.data)
     }).catch(err => {
         console.log(err);
     })
 }
+
+
 
 export const writePost = async (post, setResponse) => {
     const url = BASE_URL + "post/"
@@ -28,20 +30,12 @@ export const writePost = async (post, setResponse) => {
     })
 }
 
-export const isBlogLiked = async (postId, setIsLiked) => {
-    const url = BASE_URL + "post/is-voted/"
-    await axios.get(url, postId, axiosConfig).then(res => {
-        console.log(res.data)
-        setIsLiked(true)
-    }).catch(err => {
-        console.log(err);
-    })
-}
 
-export const isBlogSaved = async (postId, setIsSaved) => {
-    const url = BASE_URL + "save-post/is-saved/"
-    await axios.get(url, postId, axiosConfig).then(res => {
-        setIsSaved(res.data)
+export const getMyPosts = async (dispatch, setMyBlogs) => {
+
+    const url = BASE_URL + "post/get-my-post"
+    await axios.get(url, axiosConfig).then(res => {
+        dispatch(setMyBlogs(res.data))
     }).catch(err => {
         console.log(err);
     })

@@ -16,14 +16,14 @@ const Landing = () => {
 
     useEffect(() => {
         getPosts(dispatch, setBlogFeed).then(() => {
-            console.log(blogs);
+            // console.log(blogs);
             setIsLoading(false)
         }).catch(err => {
             console.log(err);
         });
     }, [])
 
-    console.log(blogs)
+    // console.log(blogs)
     return (
         <div className='landing'>
             <Banner />

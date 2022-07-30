@@ -29,13 +29,6 @@ const Signup = () => {
         const res = SignupApi(userData, dispatch, setUser).then(() => {
             navigate('/');
         });
-        // if (!!res.data.token) {
-        //     let data = userData
-        //     data.token = res.data.token
-        //     data.email = res.data.email
-        //     dispatch(setUser(data))
-        //     navigate('/');
-        // }
         console.log(userData);
     }
 
@@ -53,10 +46,10 @@ const Signup = () => {
                     <Input variant='flushed' placeholder='Password' type="password" value={userData.password} onChange={(event) => handleInput(event.target.value, "password")} required my="1" />
                     <Input variant='flushed' placeholder='Birth Date' type="date" value={userData.dob} onChange={(event) => handleInput(event.target.value, "dob")} required my="1" />
                     <Input variant='flushed' placeholder='Profile Image URL' type="url" value={userData.dp_url} onChange={(event) => handleInput(event.target.value, "dpUrl")} my="1" />
-                    <Text fontSize="sm" mt="2" fontWeight="light" align="center">Click “Sign Up” to agree to Way’s <Link to="/"><Text as='u'>Terms of Service</Text></Link> and acknowledge that Way’s <Link to="/"><Text as='u'>Privacy Policy</Text></Link> applies to you.</Text>
+                    <Text fontSize="sm" mt="2" fontWeight="light" align="center">Click “Sign Up” to agree to Way’s <Link to="/"><u>Terms of Service</u></Link> and acknowledge that Way’s <Link to="/"><u>Privacy Policy</u></Link> applies to you.</Text>
                     <Button variant='outline' type="submit" onClick={handleSubmit} color='black' mt="5">Sign Up</Button>
                 </form>
-                <Text display="flex" mt="2">Already have an account? <Link to="/login"><Text color="green">&nbsp;Sign in</Text></Link></Text>
+                <Text display="flex" mt="2">Already have an account? <Link to="/login"><Text as="span" color="green">&nbsp;Sign in</Text></Link></Text>
             </Box>
         </div>
     )

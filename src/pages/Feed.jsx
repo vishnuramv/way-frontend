@@ -30,7 +30,7 @@ const Feed = () => {
 
     useEffect(() => {
         getPosts(dispatch, setBlogFeed).then(() => {
-            console.log(blogs);
+            // console.log(blogs);
             setIsLoading(false)
         }).catch(err => {
             console.log(err);
