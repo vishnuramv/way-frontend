@@ -13,25 +13,34 @@ import Write from './pages/Write';
 import Blog from './pages/Blog';
 import Bookmarks from './pages/Bookmarks';
 import UserBlog from './pages/UserBlog';
+import { getMyFollow } from './apiclient/followapi';
+import { setFollow } from './context/reducers/followReducer';
 
 
 function App() {
   const user = useSelector((state) => state.user)
+  const follow = useSelector((state) => state.follow)
   const dispatch = useDispatch()
   const [isLoggedin, setIsLoggedin] = useState(false)
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (!!token) {
-      setIsLoggedin(true)
-      if (!!user.name) {
-        getUser(localStorage.getItem('username'), dispatch, setUser)
+    const getData = async () => {
+      const token = localStorage.getItem('token')
+      if (!!token) {
+        setIsLoggedin(true)
+        getUser(localStorage.getItem('username'), dispatch, setUser).then(() => {
+        })
+        getMyFollow(dispatch, setFollow).then(() => {
+        })
       }
     }
+    getData()
   }, [user])
+
 
   return (
     <div className="App">
       <Routes>
+        <Route path="/blog/:id" element={<Blog />} />
         {
           !isLoggedin ? (
             <>
@@ -48,7 +57,6 @@ function App() {
             <>
               <Route path="/write" element={<Write />} />
               <Route path="my-blog" element={<UserBlog />} />
-              <Route path="/blog/:id" element={<Blog />} />
               <Route path="saved-posts" element={<Bookmarks />} />
               <Route exact path="/" element={<Feed />} />
             </>

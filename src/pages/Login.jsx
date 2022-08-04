@@ -25,6 +25,7 @@ const Login = () => {
         e.preventDefault();
         LoginApi(userData, dispatch, setUser).then(() => {
             navigate('/');
+            // window.location.reload("/")
         });
         console.log(userData);
     }

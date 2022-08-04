@@ -5,7 +5,7 @@ import {
     MenuItem, Button, Box
 } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/img/logonew.png";
 import { IoHomeOutline, IoHome, IoBookmarks, IoBookmarksOutline, IoPencil, IoPencilOutline, IoBook, IoBookOutline } from 'react-icons/io5'
 import { RiQuillPenFill, RiQuillPenLine } from 'react-icons/ri'
@@ -16,6 +16,7 @@ import { setUser } from '../context/reducers/userReducer';
 
 const Sidebar = ({ user }) => {
     const location = useLocation();
+    const navigate = useNavigate();
     const { pathname } = location;
     const splitLocation = pathname.split("/");
     const dispatch = useDispatch();
@@ -24,7 +25,11 @@ const Sidebar = ({ user }) => {
         console.log("first")
         logout(dispatch, setUser).then(() => {
             console.log("Logged out")
-            window.location.reload("/")
+            window.location.reload("/").then(() => {
+                console.log("Reloaded")
+                navigate("/")
+            })
+
         }).catch(err => {
             console.log(err);
         })

@@ -27,7 +27,7 @@ const Landing = () => {
     return (
         <div className='landing'>
             <Banner />
-            <Container className='landing__feed'>''
+            <Container className='landing__feed'>
                 <Text fontSize="3xl" fontWeight="bold">Recent articles</Text>
                 {
                     !!isLoading ? <Spinner size='xl' /> : (blogs.length > 0 ? blogs.map((blog, index) => (

@@ -10,7 +10,8 @@ import ProfileCard from '../components/ProfileCard'
 
 const UserBlog = () => {
     const blogs = useSelector((state) => state.blogs.myBlogs)
-    const [user, setUser] = useState(null);
+    const user = useSelector((state) => state.user)
+    const [topic, setTopic] = useState('All');
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true)
 
@@ -26,21 +27,6 @@ const UserBlog = () => {
             setLoading(false)
     }, [])
 
-    useEffect(() => {
-        const token = localStorage.getItem('token')
-        if (!!token) {
-            const usertemp = {
-                username: localStorage.username,
-                email: localStorage.email,
-                dpUrl: localStorage.dpUrl,
-                userId: localStorage.userId,
-                name: localStorage.name
-            }
-            setUser(usertemp)
-        } else {
-            window.location.href = '/login'
-        }
-    }, [])
     return (
         <div className='userblog feed'>
             <Sidebar user={user} />
@@ -49,17 +35,28 @@ const UserBlog = () => {
                 <Divider mt="3" />
                 <Box mt="8">
                     {
-                        !!loading ? <Spinner size='xl' /> : (blogs.length > 0 ? blogs.map((blog, index) => (
-                            <Fragment key={index}>
-                                <BlogCard blog={blog} />
-                                <Divider />
-                            </Fragment>
-                        )) : <Text fontSize="3xl" fontWeight="bold">No articles yet...</Text>)
+                        !!loading ? <Spinner size='xl' /> : (blogs.length > 0 ? (
+                            topic === 'All' ?
+                                blogs.map((blog, index) => (
+                                    <Fragment key={index}>
+                                        <BlogCard blog={blog} />
+                                        <Divider />
+                                    </Fragment>
+                                )) : (
+                                    blogs.find((blog) => blog.topic === topic) ?
+                                        blogs.filter(blog => blog.topic === topic).map((blog, index) => (
+                                            <Fragment key={index}>
+                                                <BlogCard blog={blog} />
+                                                <Divider />
+                                            </Fragment>
+                                        )) : <Text>No blogs found in this topic</Text>
+                                )
+                        ) : <Text fontSize="3xl" fontWeight="bold">No articles yet...</Text>)
                     }
 
                 </Box>
             </Container>
-            <RightSidebar />
+            <RightSidebar setTopic={setTopic} />
         </div>
     )
 }

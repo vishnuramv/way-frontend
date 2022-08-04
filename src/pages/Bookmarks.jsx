@@ -13,6 +13,8 @@ const Bookmarks = () => {
     const [user, setUser] = useState(null);
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true)
+    const [topic, setTopic] = useState('All');
+
 
     useEffect(() => {
 
@@ -50,17 +52,27 @@ const Bookmarks = () => {
                 <Divider mt="3" />
                 <Box mt="8">
                     {
-                        !!loading ? <Spinner size='xl' /> : (blogs.length > 0 ? blogs.map((blog, index) => (
-                            <Fragment key={index}>
-                                <BlogCard blog={blog} />
-                                <Divider />
-                            </Fragment>
-                        )) : <Text fontSize="3xl" fontWeight="bold">No articles yet...</Text>)
+                        !!loading ? <Spinner size='xl' /> : (blogs.length > 0 ? (
+                            topic === 'All' ?
+                                blogs.map((blog, index) => (
+                                    <Fragment key={index}>
+                                        <BlogCard blog={blog} />
+                                        <Divider />
+                                    </Fragment>
+                                )) : (
+                                    blogs.find((blog) => blog.topic === topic) ?
+                                        blogs.filter(blog => blog.topic === topic).map((blog, index) => (
+                                            <Fragment key={index}>
+                                                <BlogCard blog={blog} />
+                                                <Divider />
+                                            </Fragment>
+                                        )) : <Text>No blogs found in this topic</Text>
+                                )
+                        ) : <Text fontSize="3xl" fontWeight="bold">No articles yet...</Text>)
                     }
-
                 </Box>
             </Container>
-            <RightSidebar />
+            <RightSidebar setTopic={setTopic} />
         </div>
     )
 }

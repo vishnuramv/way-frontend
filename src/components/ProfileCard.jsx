@@ -16,6 +16,12 @@ const ProfileCard = ({ user }) => {
                         </Box>
                     </Flex>
                 </Box>
+                <Box>
+                    <Flex alignItems="center">
+                        <Text fontSize="sm" fontWeight="bold">Followers: {user?.followers}</Text>
+                        <Text fontSize="sm" fontWeight="bold" ml="2">Followings: {user?.followings}</Text>
+                    </Flex>
+                </Box>
                 {/* <Button variant="solid">Follow</Button> */}
             </Flex>
         </div>

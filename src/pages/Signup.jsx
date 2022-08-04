@@ -28,6 +28,7 @@ const Signup = () => {
         e.preventDefault();
         const res = SignupApi(userData, dispatch, setUser).then(() => {
             navigate('/');
+            // window.location.reload("/")
         });
         console.log(userData);
     }

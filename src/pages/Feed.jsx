@@ -14,7 +14,7 @@ const Feed = () => {
     const blogs = useSelector((state) => state.blogs.blogFeed)
     const dispatch = useDispatch()
     const [user, setUser] = useState(null);
-
+    const [topic, setTopic] = useState('All');
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         const usertemp = {
@@ -26,7 +26,6 @@ const Feed = () => {
 
         setUser(usertemp)
     }, [])
-
 
     useEffect(() => {
         getPosts(dispatch, setBlogFeed).then(() => {
@@ -44,17 +43,28 @@ const Feed = () => {
                 <Divider mt="3" />
                 <Box mt="8">
                     {
-                        !!isLoading ? <Spinner size='xl' /> : (blogs.length > 0 ? blogs.map((blog, index) => (
-                            <Fragment key={index}>
-                                <BlogCard blog={blog} />
-                                <Divider />
-                            </Fragment>
-                        )) : <Text fontSize="3xl" fontWeight="bold">No articles yet...</Text>)
+                        !!isLoading ? <Spinner size='xl' /> : (blogs.length > 0 ? (
+                            topic === 'All' ?
+                                blogs.map((blog, index) => (
+                                    <Fragment key={index}>
+                                        <BlogCard blog={blog} />
+                                        <Divider />
+                                    </Fragment>
+                                )) : (
+                                    blogs.find((blog) => blog.topic === topic) ?
+                                        blogs.filter(blog => blog.topic === topic).map((blog, index) => (
+                                            <Fragment key={index}>
+                                                <BlogCard blog={blog} />
+                                                <Divider />
+                                            </Fragment>
+                                        )) : <Text>No blogs found in this topic</Text>
+                                )
+                        ) : <Text fontSize="3xl" fontWeight="bold">No articles yet...</Text>)
                     }
 
                 </Box>
             </Container>
-            <RightSidebar />
+            <RightSidebar setTopic={setTopic} />
         </div>
     )
 }

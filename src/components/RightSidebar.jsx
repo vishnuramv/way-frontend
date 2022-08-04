@@ -1,5 +1,5 @@
 import { Badge, Box, Flex, Text } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSavedPosts } from '../apiclient/savePost-api'
 import { setSavedBlogs } from '../context/reducers/blogReducer'
@@ -7,28 +7,49 @@ import "../styles/rightSidebar.css"
 import SaveCard from './SaveCard'
 import SearchBar from './SearchBar'
 
-const topics = [
-    "All",
-    "Self",
-    "Technology",
-    "Relationship",
-    "Sports",
-    "Politics",
-    "Life style",
-    "Fashion",
-    "Productivity",
-    "Health",
-    "Adventure",
-    "Programming",
-    "Kids",
-    "Finance",
-    "Education",
-    "Gaming",
-    "Science"
-]
+// const topics = [
+//     "All",
+//     "Self",
+//     "Technology",
+//     "Relationship",
+//     "Sports",
+//     "Politics",
+//     "Life style",
+//     "Fashion",
+//     "Productivity",
+//     "Health",
+//     "Adventure",
+//     "Programming",
+//     "Kids",
+//     "Finance",
+//     "Education",
+//     "Gaming",
+//     "Science"
+// ]
 
-const RightSidebar = () => {
+const RightSidebar = ({ setTopic }) => {
     const blogs = useSelector((state) => state.blogs.savedBlogs)
+    const [topics, setTopics] = useState(
+        [
+            "All",
+            "Self",
+            "Technology",
+            "Relationship",
+            "Sports",
+            "Politics",
+            "Life style",
+            "Fashion",
+            "Productivity",
+            "Health",
+            "Adventure",
+            "Programming",
+            "Kids",
+            "Finance",
+            "Education",
+            "Gaming",
+            "Science"
+        ]
+    )
     const dispatch = useDispatch()
     useEffect(() => {
         getSavedPosts(dispatch, setSavedBlogs).then(() => {
@@ -46,7 +67,7 @@ const RightSidebar = () => {
                 <Flex wrap="wrap">
                     {
                         topics.map((topic, index) =>
-                            <Badge rounded="full" py="2" px="5" fontSize="sm" fontWeight="500" key={index} textTransform="capitalize" letterSpacing="wide" mt="2" mr="2" >{topic}</Badge>
+                            <Badge rounded="full" py="2" px="5" fontSize="sm" cursor="pointer" onClick={() => setTopic(topic)} fontWeight="500" key={index} textTransform="capitalize" letterSpacing="wide" mt="2" mr="2" >{topic}</Badge>
                         )
                     }
                 </Flex>

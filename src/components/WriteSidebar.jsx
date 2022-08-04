@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { writePost } from '../apiclient/postapi';
 
-const WriteSidebar = ({ convertedContent }) => {
+const WriteSidebar = ({ convertedContent, onOpen }) => {
 
     const navigate = useNavigate();
     const [blogData, setBlogData] = useState({
@@ -104,7 +104,7 @@ const WriteSidebar = ({ convertedContent }) => {
                         <FormHelperText>Select the category which your blog belong to.</FormHelperText>
                     </FormControl>
                     <Button variant='outline' type="submit" onClick={handleSubmit} color='black' mt="5">Publish</Button>
-                    <Button variant='solid' type="button" colorScheme='blackAlpha' mt="5">Get AI assistance</Button>
+                    <Button variant='solid' onClick={onOpen} type="button" colorScheme='blackAlpha' mt="5">Get AI assistance</Button>
                 </Flex>
             </form>
         </Box >
