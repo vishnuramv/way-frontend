@@ -1,7 +1,6 @@
 import React from 'react'
 import { Avatar, Box, Button, Container, IconButton, Image, Text } from "@chakra-ui/react";
 import "../styles/banner.css";
-// import bannerimg from '../assets/img/bannerimg1.jpg'
 
 const Banner = () => {
     return (

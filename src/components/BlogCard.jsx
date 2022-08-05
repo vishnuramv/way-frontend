@@ -1,7 +1,6 @@
 import { Avatar, Badge, Box, Flex, IconButton, Image, Text, Tooltip } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 import "../styles/blogCard.css";
-import blogImg from "../assets/img/bannerimg1.jpg"
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { IoEllipsisVertical } from 'react-icons/io5'

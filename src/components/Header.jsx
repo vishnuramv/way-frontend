@@ -14,9 +14,9 @@ const Header = () => {
                 <Text fontSize="md" className="brandName text">Way</Text>
             </Link>
             <nav className={`${open ? "nav-open" : "nav-close"} nav`}>
-                <Link to="/">
+                {/* <Link to="/">
                     <Text fontSize="lg">Feed</Text>
-                </Link>
+                </Link> */}
                 <Divider className="header__menuDivder" />
                 <Link to="/login">
                     <Text fontSize="lg">Sign In</Text>
